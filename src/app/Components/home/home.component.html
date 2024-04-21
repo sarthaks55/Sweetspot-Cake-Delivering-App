@@ -1,0 +1,33 @@
+
+<app-header></app-header>
+<ul>
+  <li *ngFor="let cake of cakes">
+    <a routerLink="/cake/{{cake.id}}">
+      <img [src]="cake.imageUrl" [alt]="cake.name" />
+      <div class="content">
+        <div class="name">
+          {{cake.name}}
+        </div>
+        <span class="favorite {{cake.favorite?'':'not'}}">
+          ❤
+        </span>
+        <div class="stars">
+        </div>
+
+        
+        <div class="product-item-footer">
+          <div class="origins">
+          </div>
+        </div>
+
+        <div class="price">
+          <span>
+            {{cake.price | currency}}
+          </span>
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
+
+<app-footer></app-footer>

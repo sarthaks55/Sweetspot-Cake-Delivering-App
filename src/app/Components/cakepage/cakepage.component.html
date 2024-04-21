@@ -1,0 +1,51 @@
+<app-not-found
+  [visible]="!cake.id"
+  notFoundMessage="Food Not Found"
+  resetLinkText="Back To Homepage">
+</app-not-found>
+
+<div *ngIf="cake.id" class="container">
+  <img [src]="cake.imageUrl" [alt]="cake.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{cake.name}}
+      </span>
+      <span class="favorite {{cake.favorite? '': 'not'}}">❤</span>
+    </div>
+<!--
+    <div class="rating">
+      <star-rating
+      [value]="food.stars"
+      [totalstars]="5"
+      checkedcolor="red"
+      uncheckedcolor="black"
+      size="25px"
+      [readonly]="true">
+    </star-rating>
+    </div>
+
+
+    <div class="tags">
+      <a *ngFor="let tag of food.tags" routerLink="/tag/{{tag}}">
+        {{tag}}
+      </a>
+    </div>
+
+    <div class="cook-time">
+      <span>
+        Time to cook about <strong>{{food.cookTime}}</strong> minutes
+      </span>
+    </div>
+-->
+    <div class="price">
+      <span>
+        {{cake.price | currency}}
+      </span>
+    </div>
+
+    <button (click)="addToCart()">Add To Cart</button>
+
+  </div>
+</div>
