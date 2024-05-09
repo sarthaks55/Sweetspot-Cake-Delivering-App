@@ -1,6 +1,6 @@
 import { CartItem } from "./cartItem";
 
-CartItem
+
 export class Cart{
   items:CartItem[] = [];
   totalPrice:number = 0;

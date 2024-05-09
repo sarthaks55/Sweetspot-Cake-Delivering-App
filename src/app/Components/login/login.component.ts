@@ -1,80 +1,72 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { TitleComponent } from '../title/title.component';
+import { TextInputComponent } from '../partials/text-input/text-input.component';
+import { DefaultButtonComponent } from '../partials/default-button/default-button.component';
+import { InputContainerComponent } from '../partials/input-container/input-container.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { UserService } from '../../services/user/user.service';
+import { User } from '../../shared/models/User';
+
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule,CommonModule,RouterModule,TitleComponent,TextInputComponent,DefaultButtonComponent,InputContainerComponent,ToastrModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  isSubmitted = false;
 
+  constructor(private userService: UserService, private router: Router) {}
 
-  isSignDivVisiable: boolean  = true;
-
-  signUpObj: SignUpModel  = new SignUpModel();
-  loginObj: LoginModel  = new LoginModel();
-
-  constructor(private router: Router){}
-
-
-  onRegister() {
-    debugger;
-    const localUser = localStorage.getItem('angular17users');
-    if(localUser != null) {
-      const users =  JSON.parse(localUser);
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    } else {
-      const users = [];
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    }
-    alert('Registration Success')
+  ngOnInit(): void {
+    this.initForm();
   }
 
-  onLogin() {
-    debugger;
-    const localUsers =  localStorage.getItem('angular17users');
-    if(localUsers != null) {
-      const users =  JSON.parse(localUsers);
+  initForm(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
 
-      const isUserPresent =  users.find( (user:SignUpModel)=> user.email == this.loginObj.email && user.password == this.loginObj.password);
-      if(isUserPresent != undefined) {
-        alert("User Found...");
-        localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
-        this.router.navigateByUrl('/home');
-      } else {
-        alert("No User Found")
+  get fc() {
+    return this.loginForm.controls;
+  }
+
+  submit(): void {
+    this.isSubmitted = true;
+  
+    if (this.loginForm.invalid) {
+      return;
+    }
+  
+    const email = this.fc['email'].value;
+    const password = this.fc['password'].value;
+  
+    const user: User = {
+      name: '', 
+      address: '',
+      email,
+      password
+    };
+  
+    this.userService.login(user).subscribe({
+      next: (loggedInUser) => {
+        // Redirect to dashboard or any other page upon successful login
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Login failed:', error);
+        // Handle error here, if needed
       }
-    }
+    });
   }
-
+  
 }
-
-export class SignUpModel  {
-  name: string;
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = "";
-    this.name = "";
-    this.password= ""
-  }
-}
-
-export class LoginModel  { 
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = ""; 
-    this.password= ""
-  }
-}
-

@@ -16,10 +16,10 @@
                         <li class="nav-tab">Home</li>
                         <li class="nav-tab">Orders</li>
                         <li class="nav-tab">
-                            {{loggedUser?.name}}
+                            {{user.name}}
                         </li>
-                        <li class="nav-tab"><a routerLink="/login">Login</a></li>
-                        <li class="nav-tab">Contact</li>
+                        <li class="nav-tab"><a routerLink="/login">LogIn</a></li>
+                        <li class="nav-tab"><a (click)="logout()">LogOff</a></li>
                         <li class="nav-tab"><a routerLink="/cart-page">Cart <span>({{cartQuantity}})</span></a></li>
                     </ul>
                 </div>

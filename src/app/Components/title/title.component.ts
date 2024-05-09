@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-title',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule,CommonModule],
   templateUrl: './title.component.html',
   styleUrl: './title.component.css'
 })

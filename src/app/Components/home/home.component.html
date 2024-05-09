@@ -11,7 +11,9 @@
         <span class="favorite {{cake.favorite?'':'not'}}">
           ❤
         </span>
-        <div class="stars">
+        <div class="starImgNum">
+          <span class="starImage">★</span>
+          <span class="starNum">{{cake.stars}}</span>
         </div>
 
         
@@ -22,7 +24,7 @@
 
         <div class="price">
           <span>
-            {{cake.price | currency}}
+            {{cake.price | currency:'INR'}}
           </span>
         </div>
       </div>

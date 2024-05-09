@@ -51,6 +51,35 @@ ul{
   .stars{
     margin-bottom: 0.2rem;
   }
+
+  .starImgNum {
+    margin-bottom: 0.2rem;
+    background: #4caf50;
+    border-radius: 5px;
+    width: 49px;
+    height: 23px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .starImage {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .starNum {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 3px;
+    line-height: 14px;
+    color: #fff;
+  }
   
   .product-item-footer{
     display: flex;

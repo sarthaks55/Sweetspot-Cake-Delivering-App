@@ -3,65 +3,90 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart } from '../../shared/models/cart';
 import { Cakes } from '../../shared/models/cake';
 import { CartItem } from '../../shared/models/cartItem';
+import { UserService } from '../user/user.service';
+import { User } from '../../shared/models/User';
+ // Import User model
 
-
-
-@Injectable({
+ @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cart: Cart = this.getCartFromLocalStorage();
-  private cartSubject: BehaviorSubject<Cart> = new BehaviorSubject(this.cart);
-  constructor() { }
+  private cartSubject: BehaviorSubject<Cart>;
+
+  constructor(private userService: UserService) {
+    this.cartSubject = new BehaviorSubject<Cart>(this.getCartFromUser());
+  }
 
   addToCart(cake: Cakes): void {
-    let cartItem = this.cart.items
-      .find(item => item.cake.id === cake.id);
-    if (cartItem)
+    const user = this.userService.currentUser;
+    if (!user) {
+      console.error('User is not logged in.');
       return;
+    }
 
-    this.cart.items.push(new CartItem(cake));
-    this.setCartToLocalStorage();
+    let cart = user.cart || new Cart();
+    let cartItem = cart.items.find(item => item.cake.id === cake.id);
+
+    if (cartItem) {
+      cartItem.quantity++; // Increment quantity if cake is already in cart
+    } else {
+      cart.items.push(new CartItem(cake));
+    }
+
+    this.updateCart(user, cart);
+  }
+
+  changeQuantity(cakeId: string, quantity: number): void {
+    const user = this.userService.currentUser;
+    if (!user || !user.cart) {
+      return;
+    }
+
+    const cartItem = user.cart.items.find(item => item.cake.id === cakeId);
+    if (cartItem) {
+      cartItem.quantity = quantity;
+      cartItem.price = quantity * cartItem.cake.price;
+      this.updateCart(user, user.cart); // Update user with modified cart
+    }
   }
 
   removeFromCart(cakeId: string): void {
-    this.cart.items = this.cart.items
-      .filter(item => item.cake.id != cakeId);
-    this.setCartToLocalStorage();
+    const user = this.userService.currentUser;
+    if (!user || !user.cart) {
+      return;
+    }
+
+    user.cart.items = user.cart.items.filter(item => item.cake.id !== cakeId);
+    this.updateCart(user, user.cart); // Update user with modified cart
   }
 
-  changeQuantity(foodId: string, quantity: number) {
-    let cartItem = this.cart.items
-      .find(item => item.cake.id === foodId);
-    if (!cartItem) return;
+  clearCart(): void {
+    const user = this.userService.currentUser;
+    if (!user) {
+      return;
+    }
 
-    cartItem.quantity = quantity;
-    cartItem.price = quantity * cartItem.cake.price;
-    this.setCartToLocalStorage();
-  }
-
-  clearCart() {
-    this.cart = new Cart();
-    this.setCartToLocalStorage();
+    user.cart = new Cart();
+    this.updateCart(user, user.cart); // Update user with empty cart
   }
 
   getCartObservable(): Observable<Cart> {
     return this.cartSubject.asObservable();
   }
 
-  private setCartToLocalStorage(): void {
-    this.cart.totalPrice = this.cart.items
-      .reduce((prevSum, currentItem) => prevSum + currentItem.price, 0);
-    this.cart.totalCount = this.cart.items
-      .reduce((prevSum, currentItem) => prevSum + currentItem.quantity, 0);
+  private updateCart(user: User, cart: Cart): void {
+    // Recalculate total count and total price
+    cart.totalCount = cart.items.reduce((total, item) => total + item.quantity, 0);
+    cart.totalPrice = cart.items.reduce((total, item) => total + (item.quantity * item.cake.price), 0);
 
-    const cartJson = JSON.stringify(this.cart);
-    localStorage.setItem('Cart', cartJson);
-    this.cartSubject.next(this.cart);
+    // Update user's cart and persist to localStorage
+    user.cart = cart;
+    this.userService.setUserToLocalStorage(user);
+    this.cartSubject.next(cart);
   }
 
-  private getCartFromLocalStorage(): Cart {
-    const cartJson = localStorage.getItem('Cart');
-    return cartJson ? JSON.parse(cartJson) : new Cart();
+  private getCartFromUser(): Cart {
+    const user = this.userService.getUserFromLocalStorage();
+    return user.cart || new Cart();
   }
 }
