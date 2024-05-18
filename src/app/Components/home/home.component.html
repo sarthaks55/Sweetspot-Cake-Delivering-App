@@ -1,5 +1,6 @@
 
 <app-header></app-header>
+<div class="main-content">
 <ul>
   <li *ngFor="let cake of cakes">
     <a routerLink="/cake/{{cake.id}}">
@@ -31,5 +32,5 @@
     </a>
   </li>
 </ul>
-
+</div>
 <app-footer></app-footer>

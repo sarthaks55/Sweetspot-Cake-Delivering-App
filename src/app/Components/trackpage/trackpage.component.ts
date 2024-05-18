@@ -5,6 +5,8 @@ import { LocationService } from '../../services/location/location.service';
 
 @Component({
   selector: 'app-trackpage',
+  standalone: true,
+  imports: [],
   templateUrl: './trackpage.component.html',
   styleUrls: ['./trackpage.component.css']
 })

@@ -7,6 +7,10 @@ ul{
     list-style-type: none;
     padding: 0;
   }
+
+  .main-content {
+    padding-bottom: 120px; /* Adjust this value based on the height of your footer */
+  }
   
   li a{
     height: 22.5rem;

@@ -19,3 +19,7 @@ body{
 a{
   text-decoration: none;
 }
+
+.main-content {
+  padding-bottom: 120px; /* Adjust this value based on the height of your footer */
+}

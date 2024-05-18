@@ -6,13 +6,14 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 
 
 @Component({
   selector: 'app-cartpage',
   standalone: true,
-  imports: [RouterModule,CommonModule,NotFoundComponent,HeaderComponent],
+  imports: [RouterModule,CommonModule,NotFoundComponent,HeaderComponent,FooterComponent],
   templateUrl: './cartpage.component.html',
   styleUrl: './cartpage.component.css'
 })

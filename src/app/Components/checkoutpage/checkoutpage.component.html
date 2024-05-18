@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
   <div class="content">
     <app-title title="Order Form" fontSize="1.6rem"></app-title>
@@ -15,8 +16,8 @@
   </div>
   <div class="buttons-container">
     <div class="buttons">
-      <button routerLink="/payment" (click)="createOrder()">
-        Go To Payment
+      <button   (click)="createOrder()">
+        Pay {{order.totalPrice|currency:'INR'}}
       </button>
     </div>
   </div>

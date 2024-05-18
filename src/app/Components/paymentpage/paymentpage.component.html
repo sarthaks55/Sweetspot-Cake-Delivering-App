@@ -21,7 +21,7 @@
   </div>
   <div class="buttons-container">
     <div class="buttons">
-        <button routerLink="/track" >
+          <button [routerLink]="['/payment']" [queryParams]="{ name: order.name, address: order.address }">
         Pay Amount
       </button>
     </div>

@@ -87,6 +87,43 @@ export class CakeService {
         imageUrl: 'assets/carrot-cake.jpg',
         tags: ['Cake'],
       },
+      {
+        id:'3',
+        name: 'Black Forest Cake',
+        price: 5,
+        favorite: false,
+        stars: 3.5,
+        imageUrl: 'assets/black-forest-cake.jpg',
+        tags: ['Cake'],
+      },
+      {
+        id:'4',
+        name: 'Charlotte Cake',
+        price: 2,
+        favorite: true,
+        stars: 3.3,
+        imageUrl: 'assets/Charlotte-Cake.jpg',
+        tags: ['Cake'],
+      },
+      {
+        id:'5',
+        name: 'Jar Cake',
+        price: 11,
+        favorite: false,
+        stars: 3.0,
+        imageUrl: 'assets/jar-cake.jpg',
+        tags: ['Cake'],
+      },
+      {
+        id:'6',
+        name: 'Lemon Cake',
+        price: 9,
+        favorite: false,
+        stars: 4.0,
+        imageUrl: 'assets/lemon-cake.jpg',
+        tags: ['Cake'],
+      },
+      
     ]
     
    
