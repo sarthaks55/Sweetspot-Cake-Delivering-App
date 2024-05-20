@@ -7,7 +7,7 @@ export class User {
     password!: string;
     address!: string;
     token?: string;      // Made optional
-    isAdmin?: boolean;   // Made optional
+    isAdmin: boolean = false; // Made optional
     cart?: Cart;
 }
 

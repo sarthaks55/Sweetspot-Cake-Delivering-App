@@ -1,31 +1,37 @@
-
 <header>
-        <div class="nav-wrapper">
-            <div class="logo-container">
-                <a routerLink="/home" class="logo">SWEETSPOT ☺</a>
-            </div>
-            <nav>
-                <input class="hidden" type="checkbox" id="menuToggle">
-                <label class="menu-btn" for="menuToggle">
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                    <div class="menu"></div>
-                </label>
-                <div class="nav-container">
-                    <ul class="nav-tabs">
-                        <li class="nav-tab">Home</li>
-                        <li class="nav-tab">Orders</li>
-                        <li class="nav-tab">
-                            {{user.name}}
-                        </li>
-                        <li class="nav-tab"><a routerLink="/login">LogIn</a></li>
-                        <li class="nav-tab"><a (click)="logout()">LogOff</a></li>
-                        <li class="nav-tab"><a routerLink="/cart-page">Cart <span>({{cartQuantity}})</span></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+  <div class="nav-wrapper">
+    <div class="logo-container">
+      <a routerLink="/home" class="logo">SWEETSPOT ☺</a>
+    </div>
+    <nav>
+      <input class="hidden" type="checkbox" id="menuToggle">
+      <label class="menu-btn" for="menuToggle">
+        <div class="menu"></div>
+        <div class="menu"></div>
+        <div class="menu"></div>
+      </label>
+      <div class="nav-container">
+        <ul class="nav-tabs">
+          <li class="nav-tab"><a routerLink="/home">Home</a></li>
+          <li class="nav-tab dropdown" *ngIf="user?.email; else loginTemplate">
+            <span (click)="toggleUserMenu()">{{ user?.name }}</span>
+            <ul class="dropdown-menu" *ngIf="isUserMenuOpen">
+              <li class="nav-tab"><a routerLink="/orders">Orders</a></li>
+              <li class="nav-tab"><a (click)="logout()">LogOff</a></li>
+            </ul>
+          </li>
+          <ng-template #loginTemplate>
+            <li class="nav-tab"><a routerLink="/login">Login</a></li>
+            <li class="nav-tab"><a routerLink="/register">SignUp</a></li>
+          </ng-template>
+          <li class="nav-tab"><a routerLink="/cart-page">Cart🛒 <span>({{ cartQuantity }})</span></a></li>
+          <li *ngIf="user?.isAdmin" class="nav-tab"><a routerLink="/admin-dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
 
 
 

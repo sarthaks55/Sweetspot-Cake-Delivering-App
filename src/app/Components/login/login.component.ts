@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TitleComponent } from '../title/title.component';
 import { TextInputComponent } from '../partials/text-input/text-input.component';
@@ -8,7 +8,7 @@ import { DefaultButtonComponent } from '../partials/default-button/default-butto
 import { InputContainerComponent } from '../partials/input-container/input-container.component';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { UserService } from '../../services/user/user.service';
-import { User } from '../../shared/models/User';
+import { IUserLogin, User } from '../../shared/models/User';
 
 
 
@@ -22,11 +22,17 @@ import { User } from '../../shared/models/User';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted = false;
+  returnUrl: string = '';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   initForm(): void {
@@ -42,31 +48,27 @@ export class LoginComponent implements OnInit {
 
   submit(): void {
     this.isSubmitted = true;
-  
+
     if (this.loginForm.invalid) {
       return;
     }
-  
-    const email = this.fc['email'].value;
-    const password = this.fc['password'].value;
-  
-    const user: User = {
-      name: '', 
-      address: '',
-      email,
-      password
+
+    const userLogin: IUserLogin = {
+      email: this.fc['email'].value,
+      password: this.fc['password'].value
     };
-  
-    this.userService.login(user).subscribe({
+
+    this.userService.login(userLogin).subscribe({
       next: (loggedInUser) => {
-        // Redirect to dashboard or any other page upon successful login
-        this.router.navigate(['/home']);
+        if (loggedInUser.isAdmin) {
+          this.router.navigate(['/']);
+        } else {
+          this.router.navigate([this.returnUrl]);
+        }
       },
       error: (error) => {
         console.error('Login failed:', error);
-        // Handle error here, if needed
       }
     });
   }
-  
 }

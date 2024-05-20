@@ -1,0 +1,49 @@
+<div class="container">
+<app-title title="Store Loactions :" fontSize="1.9rem"></app-title>
+<div>
+  <ul class="cards">
+    <li *ngFor="let store of stores"  class="cards_item">
+    
+      
+      <div class="store-card">
+        <h3 class="store-name">{{ store.name }}</h3>
+        <p class="location">{{ store.location }}</p>
+        <div class="button-container">
+            <button class="btn"(click)="populateUpdateForm(store)">Update</button>
+            <button class="btn"(click)="deleteStore(store.id)">Delete</button>
+        </div>
+        </div>
+      
+
+
+    </li>
+  </ul>
+
+  <app-title title="Add New Store" fontSize="1.6rem"></app-title>
+  <input [(ngModel)]="newStore.name" placeholder="Store name">
+  <input [(ngModel)]="newStore.availability" placeholder="Availability">
+  <input [(ngModel)]="newStore.location" placeholder="Location">
+  <button class="btn" (click)="addStore()">Add</button>
+
+  <div *ngIf="isUpdating">
+    <app-title title="Update Store" fontSize="1.6rem"></app-title>
+    <input  [(ngModel)]="selectedStore.name" placeholder="Store name">
+    <input [(ngModel)]="selectedStore.availability" placeholder="Availability">
+    <input [(ngModel)]="selectedStore.location" placeholder="Location">
+    <button class="btn" (click)="updateStore()">Save Changes</button>
+  </div>
+</div>
+</div>
+
+<!--
+{{ store.name }} - {{ store.availability }} - {{ store.location }}
+      <button (click)="deleteStore(store.id)">Delete</button>
+      <button (click)="populateUpdateForm(store)">Update</button>
+
+
+<text-input [(ngModel)]="newStore.name" label="Store Name"></text-input>
+  <text-input [(ngModel)]="newStore.availability" label="Availability"></text-input>
+  <text-input [(ngModel)]="newStore.location" label="Store Name"></text-input>
+
+
+-->
