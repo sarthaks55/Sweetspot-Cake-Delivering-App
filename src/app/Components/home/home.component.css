@@ -8,16 +8,16 @@ ul{
     padding: 0;
   }
 
-  .main-content {
-    padding-bottom: 120px; /* Adjust this value based on the height of your footer */
-  }
+ 
   
+ 
+
   li a{
-    height: 22.5rem;
-    width: 20rem;
+    height: 27.5rem;
+    width: 18rem;
     border: 1px solid whitesmoke;
     border-radius: 1rem;
-    margin: 0.5rem;
+    margin: 1rem;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -27,18 +27,23 @@ ul{
   li a:hover{
     opacity: 0.9;
     cursor: pointer;
+   
   }
   
+  li a:hover .image{
+    transform: scale(1.10);
+  }
+
   li a img{
     object-fit: cover;
-    height: 14.5rem;
+    height: 18.5rem;
   }
   
   .content{
-    margin-top: 0.3rem;
-    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
     position: relative;
-    height: 7rem;
+    height: 9rem;
   }
   
   .favorite{

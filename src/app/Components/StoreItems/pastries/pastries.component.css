@@ -1,0 +1,150 @@
+
+ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+  }
+
+ 
+  
+ 
+
+  li a{
+    height: 27.5rem;
+    width: 18rem;
+    border: 1px solid whitesmoke;
+    border-radius: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #e72929;
+  }
+  
+  li a:hover{
+    opacity: 0.9;
+    cursor: pointer;
+   
+  }
+  
+  li a img:hover{
+    transform: scale(1.10);
+  }
+
+  li a img{
+    object-fit: cover;
+    height: 18.5rem;
+  }
+  
+  .content{
+    margin-top: 0.3rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    height: 7rem;
+  }
+  
+  .favorite{
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .favorite.not{
+    color: grey;
+  }
+  
+  .stars{
+    margin-bottom: 0.2rem;
+  }
+
+  .starImgNum {
+    margin-bottom: 0.2rem;
+    background: #4caf50;
+    border-radius: 5px;
+    width: 49px;
+    height: 23px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .starImage {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .starNum {
+    font-family: Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 3px;
+    line-height: 14px;
+    color: #fff;
+  }
+  
+  .product-item-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .origins{
+    flex: 9;
+  }
+  
+  .origins span{
+    border-radius: 2rem;
+    background-color: whitesmoke;
+    display: inline-block;
+    font-size: 0.8rem;
+    color: grey;
+    margin-right: 0.3rem;
+    padding: 0 0.5rem;
+    margin-top: 0.2rem;
+  }
+  
+  .cook-time{
+    font-size: 0.9rem;
+    flex: 3;
+    text-align: right;
+  }
+  
+  .price{
+    position: absolute;
+    bottom: 0;
+    left: 0.9rem;
+    background: white;
+    padding: 0.3rem 100% 0 0;
+    color: #414141;
+    margin-top: 0.7rem;
+    font-size: 1.1rem;
+  }
+  
+
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+}
+.rating-list li {
+    font-size: 20px;
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+}
+.rating-list li:hover {
+    color: #ffd700;
+}
+.rating-list li:hover ~ li {
+    color: #ffd700;
+}
+.rating-list li.selected {
+    color: #ffd700;
+}

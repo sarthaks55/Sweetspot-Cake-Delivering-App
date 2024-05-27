@@ -53,7 +53,7 @@ export class UserService {
   logout(): void {
     this.userSubject.next(new User());
     localStorage.removeItem(USER_KEY);
-    this.router.navigateByUrl('/login');
+    // this.router.navigateByUrl('/login');
   }
 
   public setUserToLocalStorage(user: User): void {

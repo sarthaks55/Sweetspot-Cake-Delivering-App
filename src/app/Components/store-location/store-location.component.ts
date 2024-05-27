@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../services/data/data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StoreService } from '../../services/store/store.service';
@@ -14,47 +13,6 @@ import { TextInputComponent } from '../partials/text-input/text-input.component'
   templateUrl: './store-location.component.html',
   styleUrl: './store-location.component.css'
 })
-// export class StoreLocationComponent implements OnInit {
-//   data: any[] = [];
-//   newItem: any = { id: null, name: '' };
-
-//   constructor(private dataService: DataService) {}
-
-//   ngOnInit(): void {
-//     this.loadData();
-//   }
-
-//   loadData(): void {
-//     this.dataService.getData().subscribe(data => {
-//       this.data = data;
-//     });
-//   }
-
-//   addItem(): void {
-//     this.newItem.id = this.data.length ? Math.max(...this.data.map(item => item.id)) + 1 : 1;
-//     this.dataService.addItem(this.newItem).subscribe(() => {
-//       this.loadData();
-//       this.newItem = { id: null, name: '' };
-//     });
-//   }
-
-//   prepareUpdate(item: any): void {
-//     const updatedItem = { ...item, name: 'Updated ' + item.name };
-//     this.updateItem(updatedItem);
-//   }
-
-//   updateItem(item: any): void {
-//     this.dataService.updateItem(item.id, item).subscribe(() => {
-//       this.loadData();
-//     });
-//   }
-
-//   deleteItem(id: number): void {
-//     this.dataService.deleteItem(id).subscribe(() => {
-//       this.loadData();
-//     });
-//   }
-// }
 export class StoreLocationComponent implements OnInit {
   stores: any[] = [];
   newStore: any = { id: null, name: '', availability: '', location: '' };

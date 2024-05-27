@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../services/cart/cart.service';
 import { UserService } from '../../services/user/user.service';
@@ -13,7 +13,6 @@ import { User } from '../../shared/models/User';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   isUserMenuOpen: boolean = false; 
   cartQuantity = 0;
   user: User | null = null;
@@ -21,8 +20,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     cartService: CartService, 
     private userService: UserService, 
-    private router: Router,
-    private cd: ChangeDetectorRef // Inject ChangeDetectorRef
+    private router: Router
   ) {
     cartService.getCartObservable().subscribe((newCart) => {
       this.cartQuantity = newCart.totalCount;
@@ -30,7 +28,6 @@ export class HeaderComponent implements OnInit {
 
     userService.userObservable.subscribe((newUser) => {
       this.user = newUser;
-      this.cd.detectChanges(); // Ensure change detection runs
     });
   }
 
@@ -39,8 +36,6 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.userService.logout();
     this.user = null; // Explicitly set user to null on logout
-    this.cd.detectChanges(); // Ensure change detection runs
-    this.router.navigateByUrl('/login');
   }
 
   toggleUserMenu() {

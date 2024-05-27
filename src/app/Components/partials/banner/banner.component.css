@@ -1,0 +1,22 @@
+.banner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin: 40px;
+    overflow: hidden; /* Prevent images from overflowing container */
+  }
+  
+  .banner-container img {
+    width: 90%; /* Ensures image fills the container width */
+    border-radius: 50px;
+    height: auto; /* Maintains image aspect ratio */
+  }
+  
+  @media (max-width: 768px) {
+    /* Adjust styles for smaller screens here */
+    .banner-container {
+      height: 150px; /* Example adjustment for smaller screens */
+    }
+  }
+  

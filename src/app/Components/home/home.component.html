@@ -1,36 +1,44 @@
-
 <app-header></app-header>
+<app-item-categories></app-item-categories>
+<app-banner></app-banner>
 <div class="main-content">
-<ul>
-  <li *ngFor="let cake of cakes">
-    <a routerLink="/cake/{{cake.id}}">
-      <img [src]="cake.imageUrl" [alt]="cake.name" />
-      <div class="content">
-        <div class="name">
-          {{cake.name}}
-        </div>
-        <span class="favorite {{cake.favorite?'':'not'}}">
-          ❤
-        </span>
-        <div class="starImgNum">
-          <span class="starImage">★</span>
-          <span class="starNum">{{cake.stars}}</span>
-        </div>
-
-        
-        <div class="product-item-footer">
-          <div class="origins">
+  <ul>
+    <li *ngFor="let cake of cakes">
+      <a routerLink="/cake/{{cake.id}}">
+        <img class="image" [src]="cake.imageUrl" [alt]="cake.name" />
+        <div class="content">
+          <div class="name">
+            {{cake.name}}
           </div>
-        </div>
-
-        <div class="price">
-          <span>
-            {{cake.price | currency:'INR'}}
+          <span class="favorite {{cake.favorite ? '' : 'not'}}">
+            ❤
           </span>
+          <div class="starImgNum">
+            <span class="starImage">★</span>
+            <span class="starNum">{{cake.stars}}</span>
+            
+          </div>
+          <div class="product-item-footer">
+            <div class="origins"></div>
+          </div>
+          <div class="price">
+            <span>
+              {{cake.price | currency:'INR'}}
+            </span>
+          </div>
+          <!-- -->
+          
+          
         </div>
-      </div>
-    </a>
-  </li>
-</ul>
+      </a>
+    </li>
+  </ul>
+<!--  --> 
 </div>
+<app-trending-items></app-trending-items>
 <app-footer></app-footer>
+
+
+ -->
+
+ 

@@ -5,30 +5,42 @@ import { Cakes } from '../../shared/models/cake';
 import { CartService } from '../../services/cart/cart.service';
 import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-cakepage',
   standalone: true,
-  imports: [CommonModule, RouterModule,NotFoundComponent],
+  imports: [CommonModule, RouterModule, NotFoundComponent,HeaderComponent,FooterComponent],
   templateUrl: './cakepage.component.html',
-  styleUrl: './cakepage.component.css'
+  styleUrls: ['./cakepage.component.css']
 })
 export class CakePageComponent implements OnInit {
-  cake!: Cakes;
-  constructor(activatedRoute:ActivatedRoute, cakeService:CakeService,
-    private cartService:CartService, private router: Router) {
-    activatedRoute.params.subscribe((params) => {
-      if(params['id'])
-      this.cake = cakeService.getCakeById(params['id']);
-    })
-   }
+  cake: Cakes | undefined;
 
-  ngOnInit(): void {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cakeService: CakeService,
+    private cartService: CartService,
+    private router: Router
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      if (params['id']) {
+        this.cakeService.getCakeById(params['id']).subscribe((cake) => {
+          this.cake = cake;
+        }, error => {
+          console.error('Error fetching cake', error);
+        });
+      }
+    });
   }
 
-  addToCart(){
-    this.cartService.addToCart(this.cake);
-    this.router.navigateByUrl('/cart-page');
-  }
+  ngOnInit(): void {}
 
+  addToCart() {
+    if (this.cake) {
+      this.cartService.addToCart(this.cake);
+      this.router.navigateByUrl('/cart-page');
+    }
+  }
 }

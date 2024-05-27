@@ -1,0 +1,156 @@
+
+h2 {
+	display: block;
+	text-align: center;
+	margin-bottom: .5rem;
+	padding: 2rem;
+	color: #6097a9;
+    font: bold 30px 'Bitter', sans-serif;
+}
+
+
+
+.categories {
+	text-align: center;
+}
+
+.categories ul {
+	list-style: none;
+	display: contents;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 0px;
+	width: 50%;
+	margin: auto;
+}
+
+#categ1 {
+	background-image: url('https://imgcdn.floweraura.com/decadent-black-forest-cake-with-birthday-topper-9814460ca-A_0.jpg');
+}
+
+#categ2 {
+	background-image: url('https://imgcdn.floweraura.com/heart-shaped-red-velvet-happy-anniversary-cake-9811200ca-A_0.jpg');
+}
+
+#categ3 {
+	background-image: url('https://imgcdn.floweraura.com/tweety-bird-designer-cake-9796230ca-A_0.jpg');
+}
+
+#categ4 {
+	background-image: url('https://imgcdn.floweraura.com/blue-orchids-bouquet-n-choco-cake-9813430co-C_1.jpg');
+}
+#categ5 {
+	background-image: url('https://imgcdn.floweraura.com/DSC_5986_0.jpg');
+}
+
+.slidupCont {
+	position: relative;
+	height: 25vh;
+}
+
+.categories li {
+	width: 14vw;
+	height: 28vh;
+	margin: auto 35px;
+	margin-bottom: 4em;
+	padding: 0;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 1000px 1000px 0 0;
+    display: inline-block;
+	box-sizing: border-box;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-color: #ca938f;
+	background-position: center right;
+	border-bottom: 5px solid rgb(54, 118, 159);
+	overflow: hidden;
+	transition: all .5s;
+}
+
+.categories a {
+	text-decoration: none;
+}
+
+.categories a:hover {
+	text-decoration: none;
+}
+
+.cont-txt h3 {
+	text-align: center;
+	vertical-align: middle;
+	display: block;
+	background: transparent;
+    margin-top: 225px;
+	text-decoration: none;
+	padding: 10px 9px 12px;
+	transition: color .3s ease-out;
+}
+
+.cont-txt {
+	z-index: 5;
+	position: inherit;
+    background-color: rgb(5, 0, 0);
+    font: bold 16px 'Bitter', sans-serif;
+}
+
+.cont-txt h3:hover {
+	-ms-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+
+/* //// Default effect: Slide from Top //// */
+
+.buttonfx {
+	color: #ffffff;
+	outline: none;
+	background: transparent;
+	border: none;
+	border-bottom: 4px solid #eee;
+	text-transform: uppercase;
+	font: bold 16px 'Bitter', sans-serif;
+	position: relative;
+	display: inline-block;
+	margin-bottom: 20px;
+	cursor: pointer;
+	text-decoration: none;
+	overflow: hidden;
+	transition: all .5s;
+}
+
+.buttonfx:before,
+.buttonfx:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	height: 100%;
+	background: rgba(53, 102, 111, 0.75);
+	z-index: 1;
+	transform: translate3D(0, 100%, 0);
+	transition: all .5s;
+}
+
+.buttonfx:before {
+	z-index: -2;
+	transform: translate3D(0, 0, 0);
+}
+
+.buttonfx:hover {
+	color: white;
+	font-weight: bold;
+}
+
+.buttonfx:hover:after {
+	transform: translate3D(0, 0, 0);
+	transition: all .5s;
+}

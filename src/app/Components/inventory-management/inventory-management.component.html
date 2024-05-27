@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<div id="add" class="edit">
+  <h3>Add New Item</h3>
+  <input [(ngModel)]="newCake.name" placeholder="Item name">
+  <input [(ngModel)]="newCake.price" placeholder="Price" id="Favorite" type="number">
+  <label class="Fav" for="Favorite">Favorite :</label>
+  <input [(ngModel)]="newCake.favorite" placeholder="Favorite" type="checkbox">
+  <input [(ngModel)]="newCake.stars" placeholder="Stars" type="number">
+  <input [(ngModel)]="newCake.imageUrl" placeholder="Item Image URL">
+  <input [(ngModel)]="newCake.tags" placeholder="Tags">
+  <button class="btn" (click)="addCake()">Add</button>
+  </div>
+
+  <div id="update" class="edit" *ngIf="isUpdating">
+    <h3>Update Item</h3>
+    <input [(ngModel)]="selectedCake.name" placeholder="Item name">
+    <input [(ngModel)]="selectedCake.price" placeholder="Price" type="number">
+    <label class="Fav" for="Favorite">Favorite</label>
+    <input [(ngModel)]="selectedCake.favorite" placeholder="Favorite" type="checkbox">
+    <input [(ngModel)]="selectedCake.stars" placeholder="Stars" type="number">
+    <input [(ngModel)]="selectedCake.imageUrl" placeholder="Item Image URL">
+    <input [(ngModel)]="selectedCake.tags" placeholder="Tags">
+    <button class="btn" (click)="updateCake()">Save Changes</button>
+  </div>
+
+
+<div class="main-content">
+  <ul>
+    <li *ngFor="let cake of cakes">
+      <a routerLink="/cake/{{cake.id}}">
+        <img [src]="cake.imageUrl" [alt]="cake.name" />
+        <div class="content">
+          <div class="name">
+            {{cake.name}}
+          </div>
+          <span class="favorite {{cake.favorite ? '' : 'not'}}">
+            ❤
+          </span>
+          <div class="starImgNum">
+            <span class="starImage">★</span>
+            <span class="starNum">{{cake.stars}}</span>
+            
+          </div>
+          <div class="product-item-footer">
+            <div class="origins"></div>
+          </div>
+          <div class="price">
+            <span>
+              {{cake.price | currency:'INR'}}
+            </span>
+          </div>
+          <!-- -->
+          
+          
+        </div>
+        </a>
+        <div class="button-container">
+        <button class="btn"  (click)="deleteCake(cake.id)">Delete</button>
+        <button class="btn" href="#update" (click)="populateUpdateForm(cake)">Update</button>
+        </div>
+    </li>
+  </ul>
+<!--  -->
+ 
+  <div class="bottom"></div>
+ 
+</div>
+<!--<app-footer></app-footer>
+
+
+ -->

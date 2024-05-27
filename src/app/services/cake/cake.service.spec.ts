@@ -14,3 +14,10 @@ describe('CakeService', () => {
     expect(service).toBeTruthy();
   });
 });
+
+
+// getAllFoodsByTag(tag: string,cake: Cakes): Observable<any> {
+  //   return this.getAll().pipe(
+  //     filter(cake => cake.tags?.includes(tag))
+  //   );
+  // }

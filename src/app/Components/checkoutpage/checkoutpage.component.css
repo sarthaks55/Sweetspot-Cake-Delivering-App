@@ -1,3 +1,4 @@
+
 .container{
   margin-top: 1rem;
   display: flex;
@@ -14,6 +15,7 @@
 .content,form{
   display: flex;
   flex-direction: column;
+  padding-left: 63px;
 }
 
 form{
@@ -24,6 +26,7 @@ form{
   flex-basis: 100%;
   display: flex;
   justify-content: center;
+  margin: 90px;
 }
 
 .buttons{
@@ -33,7 +36,7 @@ form{
 
 button{
   color: white;
-  background-color: #e72929;
+  background-color: rgb(3 67 94);
   width: 100%;
   height: 3rem;
   opacity: 0.8;

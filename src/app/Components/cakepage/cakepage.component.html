@@ -1,10 +1,11 @@
+<!--
 <app-not-found
   [visible]="!cake.id"
   notFoundMessage="Food Not Found"
   resetLinkText="Back To Homepage">
 </app-not-found>
 
-<div *ngIf="cake.id" class="container">
+<div *ngIf="cake" class="container">
   <img [src]="cake.imageUrl" [alt]="cake.name"/>
 
   <div class="details">
@@ -19,7 +20,7 @@
           <span class="starImage">★</span>
           <span class="starNum">{{cake.stars}}</span>
       </div>
-<!--
+
     <div class="rating">
       <star-rating
       [value]="food.stars"
@@ -43,7 +44,7 @@
         Time to cook about <strong>{{food.cookTime}}</strong> minutes
       </span>
     </div>
--->
+
     <div class="price">
       <span>
         {{cake.price | currency:'INR'}}
@@ -54,3 +55,38 @@
 
   </div>
 </div>
+-->
+<app-header></app-header>
+<app-not-found
+  [visible]="!cake"
+  notFoundMessage="Food Not Found"
+  resetLinkText="Back To Homepage">
+</app-not-found>
+
+<div *ngIf="cake" class="container">
+  <img [src]="cake.imageUrl" [alt]="cake.name"/>
+
+  <div class="details">
+    <div class="header">
+      <span class="name">
+        {{cake.name}}
+      </span>
+      <span class="favorite {{cake.favorite ? '' : 'not'}}">❤</span>
+    </div>
+
+    <div class="starImgNum">
+      <span class="starImage">★</span>
+      <span class="starNum">{{cake.stars}}</span>
+    </div>
+
+    <div class="price">
+      <span>
+        {{cake.price | currency:'INR'}}
+      </span>
+    </div>
+
+    <button (click)="addToCart()">Add To Cart</button>
+  </div>
+</div>
+
+<app-footer></app-footer>
